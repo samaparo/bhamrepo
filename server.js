@@ -1,6 +1,7 @@
 #!/bin/env node
 var express = require('express');
 var fs      = require('fs');
+var routes = require('./routes');
 
 var TransitApp = function() {
 
@@ -39,9 +40,7 @@ var TransitApp = function() {
     };
 
     self.createRoutes = function() {
-        self.app.get('/', function(req, res) {
-			res.send("hello world");
-        });
+        routes(self.app);
     };
 
 
