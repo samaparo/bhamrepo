@@ -38,7 +38,7 @@ module.exports = function routes(app){
 			res.send(data);
 		});
     });
-	app.get('/weekdayStops/:routeID', function(req, res) {
+	app.get('/stops/:routeID', function(req, res) {
 		
 		var stopIDsToHighlight = [
 			'SBO1',
@@ -73,7 +73,7 @@ module.exports = function routes(app){
 						
 						return {
 							ID: trip.trip_id,
-							IS_INBOUND: trip.trip_headsign == inboundStopName ? 'True' : 'False',
+							IS_INBOUND: trip.trip_headsign == inboundStopName ? true : false,
 							STOP_TIMES: tripStops
 						}
 					});
@@ -84,13 +84,20 @@ module.exports = function routes(app){
 					});
 					
 					
-					
+					var returnStops = _.map(stops, function(stop){
+						return {
+							ID:stop.stop_id+"",
+							NAME: stop.stop_name
+						};
+					});
 					
 					var output = {
-						STOPS: stops,
-						TRIPS: returnTrips
+						STOPS: returnStops,
+						TRIPS_OUT: _.filter(returnTrips, function(trip){return !trip.IS_INBOUND;}),
+						TRIPS_IN: _.filter(returnTrips, function(trip){return trip.IS_INBOUND;})
 					};
-					res.send(output);
+					//res.send(output);
+					res.render('route', output);
 				});
 				
 				

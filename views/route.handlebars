@@ -1,0 +1,27 @@
+<span>Outbound</span>
+<table>
+	<tr>
+		{{#each STOPS}}
+				
+		<td>{{NAME}}</td>
+	
+		{{/each}}
+	</tr>
+{{#each TRIPS_OUT}}
+	<tr>
+			{{#each STOP_TIMES}}				
+				<td>{{TIME}}</td>
+			{{/each}}
+	</tr>
+{{/each}}
+</table>
+
+{{#each STOPS}}
+	<p>{{ID}}</p>
+{{/each}}
+
+<script type='text/javascript'>
+	(function(){
+		
+	})();
+</script>

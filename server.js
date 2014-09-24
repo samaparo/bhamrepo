@@ -2,6 +2,7 @@
 var express = require('express');
 var fs      = require('fs');
 var routes = require('./routes');
+var exphbs = require('express3-handlebars');
 
 var TransitApp = function() {
 
@@ -50,6 +51,9 @@ var TransitApp = function() {
 			self.app.use(express.json());
 			self.app.use(express.urlencoded());
 			self.app.use(self.app.router);
+			
+			self.app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+			self.app.set('view engine', 'handlebars');
 			
 			self.app.use(express.static(__dirname));
 		});

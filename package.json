@@ -15,7 +15,8 @@
     "express": "~3.4.4",
     "gtfs":"0.0.4",
 	"mongoose": "= 3.6.x",
-	"underscore":"latest"
+	"underscore":"latest",
+	"express3-handlebars":"latest"
   },
   "private": true,
   "main": "server.js"
