@@ -1,4 +1,4 @@
-<span>Outbound</span>
+<p>Outbound</p>
 <table>
 	<tr>
 		{{#each OUT_STOPS}}
@@ -9,6 +9,25 @@
 	</tr>
 	
 	{{#each OUT_TRIPS}}
+	<tr>
+		{{#each STOP_TIMES}}	
+			<td>{{TIME}}</td>
+		{{/each}}
+	</tr>
+	{{/each}}
+</table>
+
+<p>Inbound</p>
+<table>
+	<tr>
+		{{#each IN_STOPS}}
+				
+		<td>{{NAME}}</td>
+	
+		{{/each}}
+	</tr>
+	
+	{{#each IN_TRIPS}}
 	<tr>
 		{{#each STOP_TIMES}}	
 			<td>{{TIME}}</td>

@@ -53,7 +53,7 @@ module.exports = function routes(app){
 		Trip.find({route_id:req.params.routeID, service_id:'WD'}, function(e, trips){
 			var allTripIDs = _.pluck(trips, 'trip_id');
 			StopTime.find().where('trip_id').in(allTripIDs).where('stop_id').in(stopIDsToHighlightUnclean).sort('stop_sequence').exec(function(e, stopTimes){
-				
+				_.each(stopTimes, function(time){ if(time.stop_id == "\t18024") console.log(time);});
 				Stop.find().where('stop_id').in(stopIDsToHighlight).exec(function(e, stops){
 					
 					var inTrips = [];
@@ -64,40 +64,48 @@ module.exports = function routes(app){
 					
 					_.each(trips, function(trip){
 						
-						var tripStopTimes = _.filter(stopTimes, function(time){						
+						var tripStopTimes = _.filter(stopTimes, function(time){	
+							
 							return time.trip_id == trip.trip_id;
 						});
-						//tripStopTimes _.sortBy(tripStopTimes, function(time){ return });
 						
+
 						var newStopTimes = [];
 						
 						_.each(stops, function(stop){
-							var matchingTime = _.find(tripStopTimes, function(time){ return time.stop_id.replace('\t','') == stop.stop_id.replace('\t','')});
+							var currentStopID = stop.stop_id.replace('\t','');
 							
-							
+							var matchingTime = _.find(tripStopTimes, function(time){ return time.stop_id.replace('\t','') == currentStopID});
+				
+														
 							var newStopTime = {
 								TIME: '',
 								TIME_IN_SECONDS: 86400,
-								STOP_ID: stop.stop_id
+								STOP_ID: currentStopID,
+								SEQUENCE: 666
 							};
 							if(matchingTime != undefined){
 								var timeString = matchingTime.departure_time.replace('\t','');
 								newStopTime = {
-									STOP_ID: stop.stop_id.replace('\t',''),
-									
+									STOP_ID: currentStopID,
 									TIME: timeString.replace(":00",""),
 									TIME_IN_SECONDS: timeString != "" ? utils.timeToSeconds(timeString) : 86400,
 									SEQUENCE: matchingTime.stop_sequence
 								};
-								
-								var stopCollection = outStops;
+
+							}
+							
+							var stopCollection = outStops;
 								if(trip.trip_headsign == inboundStopName){
 									stopCollection = inStops;
+									//if(currentStopID == "18024") console.log("inbound: " + matchingTime != undefined);
 								}
-								var currentStopID = stop.stop_id.replace('\t','');
+								
+								
 								var existingOrderedStop = _.find(stopCollection, function(orderedStop){
 									return orderedStop.ID == currentStopID;
 								});
+								//if(trip.trip_headsign == inboundStopName && currentStopID =="18024") console.log(existingOrderedStop);
 							
 								if(existingOrderedStop && newStopTime.SEQUENCE < existingOrderedStop.EARLIEST_SEQUENCE){
 									existingOrderedStop.EARLIEST_SEQUENCE = newStopTime.SEQUENCE;
@@ -109,16 +117,11 @@ module.exports = function routes(app){
 										EARLIEST_SEQUENCE: newStopTime.SEQUENCE
 									});
 								}
-								
-							}
 							
 							newStopTimes.push(newStopTime);
 							
 						});
-						
-						
-						
-						
+
 						var newTrip = {
 							ID: trip.trip_id,
 							STOP_TIMES: newStopTimes
@@ -129,48 +132,56 @@ module.exports = function routes(app){
 						
 						if(trip.trip_headsign == inboundStopName){
 							tripCollection = inTrips;
-							stopCollection = inStops;
 						}
 						tripCollection.push(newTrip);
 						
 						
+					});
+					
+					var sortTripsForOutput = function(outputTrips, outputStops){
 						
+						var returnTrips = outputTrips;
 						
-					});
-					
-					_.each(outTrips, function(trip){ 
-						trip.STOP_TIMES = _.sortBy(trip.STOP_TIMES, function(time) {
-							var matchingStop = _.find(outStops, function(stop){ return stop.ID == time.STOP_ID; });
-							return matchingStop.EARLIEST_SEQUENCE;
-						}); 
-					});
-					
-//					inTrips = _.sortBy(inTrips, function(trip){
-//						var sortedTimes = _.sortBy(trip.STOP_TIMES, function(time){time.TIME_IN_SECONDS});
-//						var earliestTime = sortedTimes[sortedTimes.length - 1].TIME_IN_SECONDS;
-//						return earliestTime;
-//					});
-					
-					outStops = _.sortBy(outStops, function(stop){
-						return stop.EARLIEST_SEQUENCE;
-					});
-					console.log(outStops);
-					outTrips = _.sortBy(outTrips, function(trip){
-						var sortedTimes = _.sortBy(trip.STOP_TIMES, function(time){time.TIME_IN_SECONDS});
-						var earliestTime = sortedTimes[sortedTimes.length - 1].TIME_IN_SECONDS;
+						_.each(returnTrips, function(trip){ 
+							trip.STOP_TIMES = _.sortBy(trip.STOP_TIMES, function(time) {
+								var matchingStop = _.find(outputStops, function(stop){ return stop.ID == time.STOP_ID; });
+								
+								return matchingStop ? matchingStop.EARLIEST_SEQUENCE : 0;
+							}); 
+						});
 						
-						return earliestTime;
-					});
+						returnTrips = _.sortBy(outputTrips, function(trip){
+							var sortedTimes = _.sortBy(trip.STOP_TIMES, function(time){time.TIME_IN_SECONDS});
+							var earliestTime = sortedTimes[sortedTimes.length - 1].TIME_IN_SECONDS;
+							return earliestTime;
+						});
+						
+						return returnTrips;
+						
+					};
+					var sortStopsForOutput = function(outputStops){
+						var returnStops = outputStops;
+						
+						returnStops = _.sortBy(returnStops, function(stop){
+							return stop.EARLIEST_SEQUENCE;
+						});
+						
+						return returnStops;
+					};
 					
+					outTrips = sortTripsForOutput(outTrips, outStops);
+					outStops = sortStopsForOutput(outStops);
 					
-					
+					inTrips = sortTripsForOutput(inTrips, inStops);
+					inStops = sortStopsForOutput(inStops);
+
 					var output = {
-						IN_TRIPS:  [],
+						IN_TRIPS:  inTrips,
 						OUT_TRIPS: outTrips,
-						IN_STOPS: [],
+						IN_STOPS: inStops,
 						OUT_STOPS: outStops,
 					};
-					//res.send(output);
+					
 					res.render('route', output);
 				});
 				
