@@ -1,24 +1,22 @@
 <span>Outbound</span>
 <table>
 	<tr>
-		{{#each STOPS}}
+		{{#each OUT_STOPS}}
 				
 		<td>{{NAME}}</td>
 	
 		{{/each}}
 	</tr>
-{{#each TRIPS_OUT}}
+	
+	{{#each OUT_TRIPS}}
 	<tr>
-			{{#each STOP_TIMES}}				
-				<td>{{TIME}}</td>
-			{{/each}}
+		{{#each STOP_TIMES}}	
+			<td>{{TIME}}</td>
+		{{/each}}
 	</tr>
-{{/each}}
+	{{/each}}
 </table>
 
-{{#each STOPS}}
-	<p>{{ID}}</p>
-{{/each}}
 
 <script type='text/javascript'>
 	(function(){
