@@ -38,6 +38,43 @@ module.exports = function routes(app){
 			res.send(data);
 		});
     });
+	app.get('/stops/', function(req, res){
+		var r = {
+			map: function(){
+				emit(this.stop_id, this.trip_id);
+			},
+			reduce: function(stopID, tripCollection){
+				
+				return tripCollection.length;
+			},
+			finalize: function(stopID, tripValue){
+				return isNumber(tripValue) ? tripValue : 1;
+			}
+			
+		};
+		
+		StopTime.mapReduce(r, function(error, results){
+			console.log(results);
+		});
+		
+		/*
+		{
+			STOPS: 
+			[
+				{
+					ID
+					NAME
+					LAT/LON
+					NUM_STOPS
+					ROUTES:[ID]
+				}
+			]
+		}
+		ORDER BY NUM STOPS, ROUTES.LENGTH
+		*/
+		
+		res.send("hi");
+	});
 	app.get('/stops/:routeID', function(req, res) {
 		
 		var stopIDsToHighlight = [
