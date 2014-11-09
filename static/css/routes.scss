@@ -1,6 +1,4 @@
-body{
-	padding-top:20px;
-}	
+
 * {
 	box-sizing: border-box;
 }
@@ -14,6 +12,44 @@ $small: 13px;
 //Route Colors
 $route-14: #F7B06A;
 
+header {
+	width: 1200px;
+	color: #000000;
+	margin-bottom: 50px;
+	background-color: rgba(247, 176, 106, .2);
+	.number{
+		background-color: $route-14;
+		display:inline-block;
+		width: 100px;
+		height: 80px;
+		font-size: 64px;
+		color:#FFFFFF;
+		font-weight:bold;
+		padding-top: 25px;
+		vertical-align: top;
+		text-align: center;
+	}
+	.description{
+		display:inline-block;
+		width: 1000px;
+		font-size: 42px;
+		padding: 5px 0px 15px 10px;
+		.name{
+			font-weight: bold;
+			width: 100%;
+			line-height: 35px;
+		}
+		span {
+			display: inline-block;
+			width: 100%;
+			line-height:10px;
+			font-size: $small;
+			line-height: 0px;
+		}
+		
+	}
+	
+}
 .route{
 	width: 630px;
 	.header{
@@ -47,6 +83,7 @@ $route-14: #F7B06A;
 			width: 19.5%;
 			display:inline-block;
 			text-align: center;
+			color:#000000;
 			.sequence{
 				display:inline-block;
 				width: 100%;

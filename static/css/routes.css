@@ -1,8 +1,37 @@
-body {
-  padding-top: 20px; }
-
 * {
   box-sizing: border-box; }
+
+header {
+  width: 1200px;
+  color: #000000;
+  margin-bottom: 50px;
+  background-color: rgba(247, 176, 106, 0.2); }
+  header .number {
+    background-color: #f7b06a;
+    display: inline-block;
+    width: 100px;
+    height: 80px;
+    font-size: 64px;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding-top: 25px;
+    vertical-align: top;
+    text-align: center; }
+  header .description {
+    display: inline-block;
+    width: 1000px;
+    font-size: 42px;
+    padding: 5px 0px 15px 10px; }
+    header .description .name {
+      font-weight: bold;
+      width: 100%;
+      line-height: 35px; }
+    header .description span {
+      display: inline-block;
+      width: 100%;
+      line-height: 10px;
+      font-size: 13px;
+      line-height: 0px; }
 
 .route {
   width: 630px; }
@@ -30,7 +59,8 @@ body {
       vertical-align: top;
       width: 19.5%;
       display: inline-block;
-      text-align: center; }
+      text-align: center;
+      color: #000000; }
       .route .stops .stop .sequence {
         display: inline-block;
         width: 100%;
