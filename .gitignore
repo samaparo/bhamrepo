@@ -1,3 +1,5 @@
 .openshift
 .dbinfo
 node_modules
+.sass-cache/
+gruntfile.js

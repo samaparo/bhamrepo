@@ -52,8 +52,9 @@ var TransitApp = function() {
 			self.app.use(express.urlencoded());
 			self.app.use(self.app.router);
 			
-			self.app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+			self.app.engine('handlebars', exphbs());
 			self.app.set('view engine', 'handlebars');
+			self.app.set('view options', {layout:false});
 			
 			self.app.use(express.static(__dirname));
 		});

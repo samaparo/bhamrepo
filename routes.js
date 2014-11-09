@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var _ = require('underscore');
 var utils = require('./lib/utils');
-var db = mongoose.connect('mongodb://localhost:27017/gtfs');
+//var db = mongoose.connect('mongodb://localhost:27017/gtfs');
 
 require('./models/Agency');
 require('./models/Calendar');
@@ -16,28 +16,22 @@ require('./models/StopTime');
 require('./models/Transfer');
 require('./models/Trip');
 
-var Agency = db.model('Agency')
-  , Calendar = db.model('Calendar')
-  , Route = db.model('Route')
-  , Stop = db.model('Stop')
-  , StopTime = db.model('StopTime')
-  , Trip = db.model('Trip')
-  , Calendar = db.model('Calendar');
+//var Agency = db.model('Agency')
+//  , Calendar = db.model('Calendar')
+//  , Route = db.model('Route')
+//  , Stop = db.model('Stop')
+//  , StopTime = db.model('StopTime')
+//  , Trip = db.model('Trip')
+//  , Calendar = db.model('Calendar');
 
 var agencyKey = 'birmingham-jefferson-county-transit-authority';
 
 
 module.exports = function routes(app){
 	app.get('/', function(req, res) {
-		Route.find({agency_key:agencyKey}, function(e, data){
-			res.send(data);
-		});
+		res.render('route2', {});
     });
-	app.get('/trips/:routeID', function(req, res) {
-		Trip.find({route_id:req.params.routeID, service_id:'WD'}, function(e, data){
-			res.send(data);
-		});
-    });
+	
 	app.get('/stops/', function(req, res){
 		var r = {
 			map: function(){
@@ -54,26 +48,30 @@ module.exports = function routes(app){
 		};
 		
 		StopTime.mapReduce(r, function(error, results){
-			console.log(results);
+			results = _.sortBy(results, function(res){
+				var valInt = res.value;
+				
+				return isNaN(valInt) ? 0 : valInt;
+			});
+			results = results.reverse();
+
+			var limit = 10;
+			var returnResults = [];
+			var stopIDs = [];
+			for(var i = 0; i<limit; i++){
+				stopIDs.push(results[i]["_id"]);
+			}
+				
+				Stop.find().where("stop_id").in(stopIDs).exec(e, function(matchingStop){
+					
+					res.send(matchingStop);
+				});
+			
 		});
 		
-		/*
-		{
-			STOPS: 
-			[
-				{
-					ID
-					NAME
-					LAT/LON
-					NUM_STOPS
-					ROUTES:[ID]
-				}
-			]
-		}
-		ORDER BY NUM STOPS, ROUTES.LENGTH
-		*/
+
 		
-		res.send("hi");
+		
 	});
 	app.get('/stops/:routeID', function(req, res) {
 		
