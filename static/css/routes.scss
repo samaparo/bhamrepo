@@ -11,11 +11,14 @@ $small: 13px;
 
 //Route Colors
 $route-14: #F7B06A;
-
+.wrapper {
+	width: 1400px;
+}
 header {
-	width: 1200px;
+	width: 1400px;
 	color: #000000;
 	margin-bottom: 50px;
+	display: inline-block;
 	background-color: rgba(247, 176, 106, .2);
 	.number{
 		background-color: $route-14;
@@ -50,8 +53,23 @@ header {
 	}
 	
 }
+.map {
+	width: 700px;
+	height: 800px;
+	border: solid 1px #000000;
+	display: inline-block;
+	vertical-align: top;
+	margin-left:50px;
+	line-height: 800px;
+	text-align:center;
+	span{
+		font-size: $extraLarge;
+		vertical-align:middle;
+	}
+}
 .route{
 	width: 630px;
+	display:inline-block;
 	.header{
 		
 		border-bottom: solid 4px $route-14;
