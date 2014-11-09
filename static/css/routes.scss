@@ -15,7 +15,7 @@ $small: 13px;
 $route-14: #F7B06A;
 
 .route{
-	width: 800px;
+	width: 630px;
 	.header{
 		
 		border-bottom: solid 4px $route-14;
@@ -38,6 +38,67 @@ $route-14: #F7B06A;
 		}
 		
 	}
-	
+	.stops{
+		width: 100%;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		.stop{
+			vertical-align: top;
+			width: 19.5%;
+			display:inline-block;
+			text-align: center;
+			.sequence{
+				display:inline-block;
+				width: 100%;
+				text-align:center;
+				padding-bottom: 5px;
+			}
+			.sequence span {
+				display:inline-block;
+				width:30px;
+				height:30px;
+				border-radius:50%;
+				font-size:$medium;
+				color:#FFFFFF;
+				line-height:30px;
+				text-align:center;
+				background-color: $route-14;
+				font-weight: bold;
+			}
+		}
+	}
+	.day-divider{
+		width: 100%;
+		background-color: $route-14;
+		height: 16px;
+		text-align: center;
+		color: #FFFFFF;
+		font-weight: bold;
+		height: 22px;
+		font-size: $small;
+		border: solid 1px #000000;
+	}
+	.times{
+		width: 100%;
+		.row{
+			border-bottom: solid 1px grey;
+			position:relative;
+			.am-pm{
+				font-size: $small;
+				position: absolute;
+				left: 5px;
+				top:0px;
+			}
+			.time{
+				display:inline-block;
+				text-align: center;
+				width: 19.5%;
+				font-size: $small;
+			}
+		}
+		.row.pm{
+			font-weight: bold;
+		}
+	}
 
 }
