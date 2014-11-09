@@ -25,17 +25,21 @@ header {
     display: inline-block;
     width: 1000px;
     font-size: 42px;
-    padding: 5px 0px 15px 10px; }
+    padding: 15px 0px 20px 10px; }
     header .description .name {
       font-weight: bold;
       width: 100%;
-      line-height: 35px; }
+      line-height: 35px;
+      color: #000000; }
     header .description span {
       display: inline-block;
       width: 100%;
       line-height: 10px;
-      font-size: 13px;
-      line-height: 0px; }
+      font-size: 16px;
+      line-height: 0px;
+      color: #000000; }
+    header .description strong {
+      color: #000000; }
 
 .map {
   width: 700px;
@@ -72,13 +76,14 @@ header {
   .route .stops {
     width: 100%;
     padding-top: 10px;
-    padding-bottom: 10px; }
+    padding-bottom: 15px; }
     .route .stops .stop {
       vertical-align: top;
       width: 19.5%;
       display: inline-block;
       text-align: center;
-      color: #000000; }
+      color: #000000;
+      font-size: 16px; }
       .route .stops .stop .sequence {
         display: inline-block;
         width: 100%;
@@ -98,20 +103,20 @@ header {
   .route .day-divider {
     width: 100%;
     background-color: #f7b06a;
-    height: 16px;
     text-align: center;
     color: #FFFFFF;
     font-weight: bold;
-    height: 22px;
-    font-size: 13px;
+    height: 26px;
+    font-size: 16px;
     border: solid 1px #000000; }
   .route .times {
     width: 100%; }
     .route .times .row {
       border-bottom: solid 1px grey;
-      position: relative; }
+      position: relative;
+      line-height: 22px; }
       .route .times .row .am-pm {
-        font-size: 13px;
+        font-size: 16px;
         position: absolute;
         left: 5px;
         top: 0px; }
@@ -119,6 +124,6 @@ header {
         display: inline-block;
         text-align: center;
         width: 19.5%;
-        font-size: 13px; }
+        font-size: 16px; }
     .route .times .row.pm {
       font-weight: bold; }

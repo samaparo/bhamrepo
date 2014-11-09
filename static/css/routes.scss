@@ -7,7 +7,7 @@
 $extraLarge: 32px;
 $large: 22px;
 $medium: 16px;
-$small: 13px;
+$small: 16px;
 
 //Route Colors
 $route-14: #F7B06A;
@@ -19,6 +19,7 @@ header {
 	color: #000000;
 	margin-bottom: 50px;
 	display: inline-block;
+	
 	background-color: rgba(247, 176, 106, .2);
 	.number{
 		background-color: $route-14;
@@ -36,18 +37,24 @@ header {
 		display:inline-block;
 		width: 1000px;
 		font-size: 42px;
-		padding: 5px 0px 15px 10px;
+		padding: 15px 0px 20px 10px;
+		
 		.name{
 			font-weight: bold;
 			width: 100%;
 			line-height: 35px;
+			color:#000000;
 		}
 		span {
 			display: inline-block;
 			width: 100%;
 			line-height:10px;
-			font-size: $small;
+			font-size: $medium;
 			line-height: 0px;
+			color:#000000;
+		}
+		strong {
+			color: #000000;
 		}
 		
 	}
@@ -95,18 +102,20 @@ header {
 	.stops{
 		width: 100%;
 		padding-top: 10px;
-		padding-bottom: 10px;
+		padding-bottom: 15px;
 		.stop{
 			vertical-align: top;
 			width: 19.5%;
 			display:inline-block;
 			text-align: center;
 			color:#000000;
+			font-size: $small;
 			.sequence{
 				display:inline-block;
 				width: 100%;
 				text-align:center;
 				padding-bottom: 5px;
+				
 			}
 			.sequence span {
 				display:inline-block;
@@ -125,11 +134,10 @@ header {
 	.day-divider{
 		width: 100%;
 		background-color: $route-14;
-		height: 16px;
 		text-align: center;
 		color: #FFFFFF;
 		font-weight: bold;
-		height: 22px;
+		height: 26px;
 		font-size: $small;
 		border: solid 1px #000000;
 	}
@@ -138,6 +146,7 @@ header {
 		.row{
 			border-bottom: solid 1px grey;
 			position:relative;
+			line-height: 22px;
 			.am-pm{
 				font-size: $small;
 				position: absolute;
