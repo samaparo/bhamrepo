@@ -14,9 +14,16 @@ $small: 16px;
 	background-color: #1779B3;
 	border-color:#1779B3;
 }
-	.route-1.light {
-		background-color: rgba(23, 121, 179, .2);
-	}
+.route-40 { 
+	background-color: #C9B2D7;
+	border-color:#C9B2D7;
+}
+.route-9 { 
+	background-color: #FB989D;
+	border-color:#FB989D;
+}
+
+
 
 
 //Reusable
@@ -109,11 +116,24 @@ $small: 16px;
 				z-index: 1;
 				
 			}
-			.name {
+			.details {
 				display:inline-block;
 				width: 370px;
 				padding-left: 10px;
 				font-size: $small;
+				.name{
+					display:inline-block;
+					width: 100%;
+				}
+				.route-number{
+					display: inline-block;
+					margin-right: 4px;
+					font-size: 14px;
+					line-height: 14px;
+					padding:3px;
+					color: #FFFFFF;
+					font-weight: bold;
+				}
 			}
 			.sequence{
 				width: 30px;

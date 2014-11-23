@@ -5,8 +5,13 @@
   background-color: #1779B3;
   border-color: #1779B3; }
 
-.route-1.light {
-  background-color: rgba(23, 121, 179, 0.2); }
+.route-40 {
+  background-color: #C9B2D7;
+  border-color: #C9B2D7; }
+
+.route-9 {
+  background-color: #FB989D;
+  border-color: #FB989D; }
 
 .sequence {
   display: inline-block;
@@ -85,11 +90,22 @@
         width: 8px;
         height: 101%;
         z-index: 1; }
-      .summary .line-map .stop .name {
+      .summary .line-map .stop .details {
         display: inline-block;
         width: 370px;
         padding-left: 10px;
         font-size: 16px; }
+        .summary .line-map .stop .details .name {
+          display: inline-block;
+          width: 100%; }
+        .summary .line-map .stop .details .route-number {
+          display: inline-block;
+          margin-right: 4px;
+          font-size: 14px;
+          line-height: 14px;
+          padding: 3px;
+          color: #FFFFFF;
+          font-weight: bold; }
       .summary .line-map .stop .sequence {
         width: 30px;
         vertical-align: top;
