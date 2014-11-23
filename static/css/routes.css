@@ -1,17 +1,42 @@
 * {
   box-sizing: border-box; }
 
+.route-1 {
+  background-color: #1779B3;
+  border-color: #1779B3; }
+
+.route-1.light {
+  background-color: rgba(23, 121, 179, 0.2); }
+
+.sequence {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5px; }
+  .sequence span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 16px;
+    color: #FFFFFF;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold; }
+
 .wrapper {
   width: 1400px; }
 
-header {
-  width: 1400px;
+.summary {
+  width: 522px;
   color: #000000;
   margin-bottom: 50px;
   display: inline-block;
-  background-color: rgba(247, 176, 106, 0.2); }
-  header .number {
-    background-color: #f7b06a;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000; }
+  .summary .number {
     display: inline-block;
     width: 100px;
     height: 80px;
@@ -21,25 +46,57 @@ header {
     padding-top: 25px;
     vertical-align: top;
     text-align: center; }
-  header .description {
+  .summary > .name {
+    font-weight: bold;
     display: inline-block;
-    width: 1000px;
+    width: 420px;
     font-size: 42px;
-    padding: 15px 0px 20px 10px; }
-    header .description .name {
-      font-weight: bold;
-      width: 100%;
-      line-height: 35px;
-      color: #000000; }
-    header .description span {
+    line-height: 35px;
+    vertical-align: bottom;
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    padding: 0px 0px 5px 10px;
+    color: #000000;
+    background-color: white; }
+  .summary .description {
+    display: inline-block;
+    width: 100%;
+    padding: 15px 0px 0px 35px; }
+    .summary .description span {
       display: inline-block;
       width: 100%;
       line-height: 10px;
       font-size: 16px;
       line-height: 0px;
       color: #000000; }
-    header .description strong {
+    .summary .description strong {
       color: #000000; }
+  .summary .line-map {
+    padding-left: 35px;
+    padding-top: 10px; }
+    .summary .line-map .stop {
+      width: 400px;
+      height: 60px;
+      position: relative; }
+      .summary .line-map .stop .line {
+        position: absolute;
+        top: 0px;
+        left: 11px;
+        width: 8px;
+        height: 101%;
+        z-index: 1; }
+      .summary .line-map .stop .name {
+        display: inline-block;
+        width: 370px;
+        padding-left: 10px;
+        font-size: 16px; }
+      .summary .line-map .stop .sequence {
+        width: 30px;
+        vertical-align: top;
+        position: relative;
+        z-index: 2; }
+    .summary .line-map .stop.last .line {
+      display: none; }
 
 .map {
   width: 700px;
@@ -58,17 +115,18 @@ header {
   width: 630px;
   display: inline-block; }
   .route .header {
-    border-bottom: solid 4px #f7b06a;
-    font-weight: bold; }
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    font-weight: bold;
+    background-color: white; }
     .route .header .name {
       display: inline-block;
       width: 50px;
       height: 40px;
       padding-top: 10px;
-      padding-left: 5px;
       color: #FFFFFF;
-      font-size: 32px;
-      background-color: #f7b06a; }
+      text-align: center;
+      font-size: 32px; }
     .route .header .description {
       color: #000000;
       font-size: 22px;
@@ -85,27 +143,13 @@ header {
       color: #000000;
       font-size: 16px; }
       .route .stops .stop .sequence {
-        display: inline-block;
-        width: 100%;
-        text-align: center;
         padding-bottom: 5px; }
-      .route .stops .stop .sequence span {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        font-size: 16px;
-        color: #FFFFFF;
-        line-height: 30px;
-        text-align: center;
-        background-color: #f7b06a;
-        font-weight: bold; }
   .route .day-divider {
     width: 100%;
-    background-color: #f7b06a;
     text-align: center;
     color: #FFFFFF;
     font-weight: bold;
+    padding-top: 2px;
     height: 26px;
     font-size: 16px;
     border: solid 1px #000000; }

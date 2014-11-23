@@ -29,7 +29,7 @@ var agencyKey = 'birmingham-jefferson-county-transit-authority';
 
 module.exports = function routes(app){
 	app.get('/', function(req, res) {
-		res.render('route2', {});
+		res.render('route3', {});
     });
 	
 	app.get('/stops/', function(req, res){
