@@ -49,9 +49,11 @@ $small: 16px;
 
 .wrapper {
 	width: 1400px;
+	padding-top: 20px;
 }
 .summary {
 	width: 522px;
+	margin-left: 100px;
 	color: #000000;
 	margin-bottom: 50px;
 	display: inline-block;
@@ -149,7 +151,7 @@ $small: 16px;
 	
 }
 .map {
-	width: 700px;
+	width: 674px;
 	height: 800px;
 	border: solid 1px #000000;
 	display: inline-block;
