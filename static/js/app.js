@@ -41,18 +41,19 @@
 			NAME: "Walmart"
 		},
 	];
-	var outboundStopIDs = ['A','B','C','D','E','F','G','H'];
-	var inboundStopIDs = ['A','B','C','D','F','H','I','J'];
-		
+	var outboundStopIDs = ['A','B','C','D','E','G','H', 'J'];
+	var inboundStopIDs = ['J','I','G','D','F','C','B','A'];
+	
+	
 	var inboundTripsWD = [];
 	var outboundTripsWD = [];
 	
 	//populate with 6 dummy rows
 	for(var i = 0; i<16; i++){
-		inboundTripsWD.push({STOPS:[{STOP_ID:"A", TIME:"5:45"},{STOP_ID:"B", TIME:"5:45"},{STOP_ID:"C", TIME:"5:45"},{STOP_ID:"D", TIME:"5:45"},{STOP_ID:"E", TIME:"5:45"},{STOP_ID:"F", TIME:"5:45"},{STOP_ID:"G", TIME:"5:45"},{STOP_ID:"H", TIME:"5:45"},]});
+		inboundTripsWD.push({STOPS:[{STOP_ID:"A", TIME:"5:45"},{STOP_ID:"B", TIME:"5:45"},{STOP_ID:"C", TIME:"5:45"},{STOP_ID:"D", TIME:"5:45"},{STOP_ID:"E", TIME:"5:45"},{STOP_ID:"G", TIME:"5:45"},{STOP_ID:"J", TIME:"5:45"},{STOP_ID:"H", TIME:"5:45"},]});
 	}
 	for(var i = 0; i<16; i++){
-		outboundTripsWD.push({STOPS:[{STOP_ID:"A", TIME:"5:45"},{STOP_ID:"B", TIME:"5:45"},{STOP_ID:"C", TIME:"5:45"},{STOP_ID:"D", TIME:"5:45"},{STOP_ID:"I", TIME:"5:45"},{STOP_ID:"F", TIME:"5:45"},{STOP_ID:"J", TIME:"5:45"},{STOP_ID:"H", TIME:"5:45"},]});
+		outboundTripsWD.push({STOPS:[{STOP_ID:"A", TIME:"5:45"},{STOP_ID:"B", TIME:"5:45"},{STOP_ID:"C", TIME:"5:45"},{STOP_ID:"D", TIME:"5:45"},{STOP_ID:"E", TIME:"5:45"},{STOP_ID:"G", TIME:"5:45"},{STOP_ID:"H", TIME:"5:45"},{STOP_ID:"J", TIME:"5:45"},]});
 	}
 								  
 	var $outboundTable = $("#outbound");
@@ -64,19 +65,62 @@
 					   '</div>' +
 					   '<span class="name"><%= NAME %></span>' +
 			           '</div>');
+	var rowTemplate = _.template('<div class="row <%= ampmClass %>"><div class="am-pm"><%= ampmText %></div><%= stopHTML %></div>');
+	var timeTemplate = _.template('<div class="time"><%= TIME %></div>');
 	
-	var outboundStopHTML = "";
+	var stopHTML = "";
+	var timeHTML = "";
+	var stopPercent = (100.0/outboundStopIDs.length) - .1 + "%";
 	
 	_.each(outboundStopIDs, function(ID){
 		var matchingStop = _.find(stops, function(stop){ return stop.ID == ID;});
 		if(matchingStop != undefined)
-			outboundStopHTML += stopTemplate(matchingStop);
+			stopHTML += stopTemplate(matchingStop);
+	});	
+	
+	_.each(outboundTripsWD, function(trip){
+		var rowHTML = "";
+		_.each(outboundStopIDs, function(ID){
+			var matchingTime = _.find(trip.STOPS, function(stop){ return stop.STOP_ID == ID});
+			if(matchingTime != undefined)
+				rowHTML += timeTemplate(matchingTime);
+			else
+				rowHTML += timeTemplate({TIME:'-'});
+		});
+		timeHTML += rowTemplate({ampmClass:'', ampmText: '', stopHTML: rowHTML});
 	});
 	
 	
+	$outboundTable.find(".stops").html(stopHTML);
+	$outboundTable.find(".times").html(timeHTML);
+	$outboundTable.find(".stops .stop").css("width", stopPercent);
+	$outboundTable.find(".times .time").css("width", stopPercent);
 	
-	$outboundTable.find(".stops").html(outboundStopHTML);
 	
+	/*
+	<div class="row">
+					<div class="am-pm"></div>
+					<div class="time">5:45</div>
+					<div class="time">6:04</div>
+					<div class="time">6:15</div>
+					<div class="time">6:28</div>
+					<div class="time">6:35</div>
+				</div>
+	*/
+	
+	
+//	stopHTML = "";
+//	stopPercent =  (100.0/inboundStopIDs.length) - .1 + "%";
+//	_.each(inboundStopIDs, function(ID){
+//		var matchingStop = _.find(stops, function(stop){ return stop.ID == ID;});
+//		if(matchingStop != undefined)
+//			stopHTML += stopTemplate(matchingStop);
+//	});
+//	$inboundTable.find(".stops").html(stopHTML);
+//	$inboundTable.find(".stops .stop").css("width", stopPercent);
+	
+	
+	$(".stops .sequence span").addClass("route-1");
 	
 	
 	

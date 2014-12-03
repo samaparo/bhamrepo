@@ -165,7 +165,7 @@ $small: 16px;
 	}
 }
 .route{
-	width: 630px;
+	width: 1000px;
 	display:inline-block;
 	.header{
 		
@@ -197,11 +197,11 @@ $small: 16px;
 		padding-bottom: 15px;
 		.stop{
 			vertical-align: top;
-			width: 19.5%;
 			display:inline-block;
 			text-align: center;
 			color:#000000;
 			font-size: $small;
+			padding: 0px 5px;
 			.sequence{
 				padding-bottom: 5px;	
 			}
@@ -235,7 +235,6 @@ $small: 16px;
 			.time{
 				display:inline-block;
 				text-align: center;
-				width: 19.5%;
 				font-size: $small;
 			}
 		}
