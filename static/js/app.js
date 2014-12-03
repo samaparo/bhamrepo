@@ -78,6 +78,8 @@
 			stopHTML += stopTemplate(matchingStop);
 	});	
 	
+	var isPM = false;
+	var counter = 0;
 	_.each(outboundTripsWD, function(trip){
 		var rowHTML = "";
 		_.each(outboundStopIDs, function(ID){
@@ -87,7 +89,19 @@
 			else
 				rowHTML += timeTemplate({TIME:'-'});
 		});
-		timeHTML += rowTemplate({ampmClass:'', ampmText: '', stopHTML: rowHTML});
+		
+		var ampmText = "";
+		counter += 1;
+		if(counter>= 8){
+			isPM = true;
+		}
+		if(counter == 1){
+			ampmText = "A.M.";
+		}
+		if(counter == 8){
+			ampmText = "P.M.";
+		}
+		timeHTML += rowTemplate({ampmClass:(isPM ? "pm" : ""), ampmText: ampmText, stopHTML: rowHTML});
 	});
 	
 	
@@ -120,7 +134,7 @@
 //	$inboundTable.find(".stops .stop").css("width", stopPercent);
 	
 	
-	$(".stops .sequence span").addClass("route-1");
+	$(".stops .sequence span, .day-divider").addClass("route-1");
 	
 	
 	
