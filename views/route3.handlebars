@@ -14,7 +14,7 @@
 				<span><strong>Saturday:</strong> Every 1 Hour 5 Minutes from 6:03 A.M to 9:35 P.M.</span>
 			</div><div class="line-map">
 				<div class="stop">
-					<div class="sequence"><span class="route-1">A</span></div><span class="details"><span class="name">Central Station</span><span class="route-number route-9">Route 9</span><span class="route-number route-40">Route 40</span></span>
+					<div class="sequence"><span class="route-1">A</span></div><span class="details"><span class="name">Central Station</span><span class="route-number route-9">9</span><span class="route-number route-40">40</span></span>
 					
 					<div class="line route-1" ></div>
 				</div><div class="stop">
@@ -54,7 +54,7 @@
 <!--			<span>Route Map Goes Here</span>-->
 			<img src="/static/img/route1.jpg" style="width: 100%; height: 100%;">
 		</div>
-			<div class="route">
+			<div id="outbound" class="route">
 			<div class="header route-1">
 				<span class="name route-1">1</span>
 				<span class="description">From <em>Central Station</em> to <em>Oxmoor Rd & Barber Ct</em></span>
@@ -71,25 +71,25 @@
 					<div class="sequence">
 						<span>B</span>
 					</div>
-					<span class="name">11th Ave S & 20th St S</span>
+					<span class="name">Babtist Medical Center Princeton</span>
 				</div>
 				<div class="stop">
 					<div class="sequence">
 						<span>C</span>
 					</div>
-					<span class="name">Idlewild Circle</span>
+					<span class="name">West End Academy</span>
 				</div>
 				<div class="stop">
 					<div class="sequence">
 						<span>D</span>
 					</div>
-					<span class="name">Palisades Shopping Center</span>
+					<span class="name">Jefferson & 40th St.</span>
 				</div>
 				<div class="stop">
 					<div class="sequence">
 						<span>E</span>
 					</div>
-					<span class="name"> Oxmoor Rd & Barber Ct</span>
+					<span class="name">5th Ave. & 19th St. (Bess)</span>
 				</div>
 			</div>
 			<div class="day-divider route-1">
@@ -137,7 +137,7 @@
 				
 			</div>
 		</div>
-			<div class="route">
+			<div id="inbound" class="route">
 			<div class="header">
 				<span class="name">14</span>
 				<span class="description">From <em>Oxmoor Rd & Barber Ct</em> to <em>Central Station</em></span>
@@ -189,25 +189,15 @@
 				<span>SATURDAY</span>
 			</div>
 			<div class="times">
-				<div class="row">
-					<div class="am-pm">A.M.</div>
-					<div class="time">5:45</div>
-					<div class="time">6:04</div>
-					<div class="time">6:15</div>
-					<div class="time">6:28</div>
-					<div class="time">6:35</div>
-				</div>
-				<div class="row">
-					<div class="am-pm"></div>
-					<div class="time">5:45</div>
-					<div class="time">6:04</div>
-					<div class="time">6:15</div>
-					<div class="time">6:28</div>
-					<div class="time">6:35</div>
-				</div>
+				
 				
 			</div>
 		</div>
 			</div>
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/underscore-min.js"></script>
+		<script src="/static/js/app.js"></script>
+		
+		
 	</body>
 </html>
