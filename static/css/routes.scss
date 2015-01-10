@@ -57,6 +57,7 @@ $small: 16px;
 	.print-cell {
 		padding: 10px;
 		width: 350px;
+		vertical-align: top;
 	}
 	.print-cell.two {
 		width: 700px;
@@ -64,15 +65,13 @@ $small: 16px;
 }
 
 .summary {
-	width: 522px;
-	margin-left: 100px;
-	color: #000000;
-	margin-bottom: 50px;
 	display: inline-block;
-	background-color:white;
-	border-style: solid;
-	border-width: 1px;
-	border-color: #000000;
+	> div {
+		color: #000000;
+		background-color:white;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #000000;
 	.number{
 		display:inline-block;
 		width: 100px;
@@ -86,14 +85,15 @@ $small: 16px;
 	}
 	> .name{
 			font-weight: bold;
+			width: 228px;
 			display: inline-block;
-			width: 420px;
-			font-size: 42px;
+			font-size: 39px;
+			height: 80px;
 			line-height: 35px;
-			vertical-align: bottom;
+			vertical-align: top;
 			border-bottom-style:solid;
 			border-bottom-width: 4px;
-			padding: 0px 0px 5px 10px;
+			padding:5px 0px 5px 10px;
 			color:#000000;
 			background-color:white;
 		}
@@ -104,9 +104,8 @@ $small: 16px;
 		span {
 			display: inline-block;
 			width: 100%;
-			line-height:10px;
 			font-size: $medium;
-			line-height: 0px;
+			padding-bottom: 10px;
 			color:#000000;
 		}
 		strong {
@@ -160,19 +159,22 @@ $small: 16px;
 			display: none;
 		}
 	}
+	}
 	
 }
 .map {
 	height: 800px;
-	border: solid 1px #000000;
 	display: inline-block;
 	vertical-align: top;
-	line-height: 800px;
-	text-align:center;
-	span{
-		font-size: $extraLarge;
-		vertical-align:middle;
+	div{
+		border: solid 1px #000000;
+		span{
+			font-size: $extraLarge;
+			vertical-align:middle;
+			
+		}
 	}
+	
 }
 .route{
 	

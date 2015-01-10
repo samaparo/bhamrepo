@@ -37,103 +37,101 @@ body {
   width: 1400px; }
   .wrapper .print-cell {
     padding: 10px;
-    width: 350px; }
+    width: 350px;
+    vertical-align: top; }
   .wrapper .print-cell.two {
     width: 700px; }
 
 .summary {
-  width: 522px;
-  margin-left: 100px;
-  color: #000000;
-  margin-bottom: 50px;
-  display: inline-block;
-  background-color: white;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #000000; }
-  .summary .number {
-    display: inline-block;
-    width: 100px;
-    height: 80px;
-    font-size: 64px;
-    color: #FFFFFF;
-    font-weight: bold;
-    padding-top: 25px;
-    vertical-align: top;
-    text-align: center; }
-  .summary > .name {
-    font-weight: bold;
-    display: inline-block;
-    width: 420px;
-    font-size: 42px;
-    line-height: 35px;
-    vertical-align: bottom;
-    border-bottom-style: solid;
-    border-bottom-width: 4px;
-    padding: 0px 0px 5px 10px;
+  display: inline-block; }
+  .summary > div {
     color: #000000;
-    background-color: white; }
-  .summary .description {
-    display: inline-block;
-    width: 100%;
-    padding: 15px 0px 0px 35px; }
-    .summary .description span {
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000; }
+    .summary > div .number {
+      display: inline-block;
+      width: 100px;
+      height: 80px;
+      font-size: 64px;
+      color: #FFFFFF;
+      font-weight: bold;
+      padding-top: 25px;
+      vertical-align: top;
+      text-align: center; }
+    .summary > div > .name {
+      font-weight: bold;
+      width: 228px;
+      display: inline-block;
+      font-size: 39px;
+      height: 80px;
+      line-height: 35px;
+      vertical-align: top;
+      border-bottom-style: solid;
+      border-bottom-width: 4px;
+      padding: 5px 0px 5px 10px;
+      color: #000000;
+      background-color: white; }
+    .summary > div .description {
       display: inline-block;
       width: 100%;
-      line-height: 10px;
-      font-size: 16px;
-      line-height: 0px;
-      color: #000000; }
-    .summary .description strong {
-      color: #000000; }
-  .summary .line-map {
-    padding-left: 35px;
-    padding-top: 10px; }
-    .summary .line-map .stop {
-      width: 400px;
-      height: 60px;
-      position: relative; }
-      .summary .line-map .stop .line {
-        position: absolute;
-        top: 0px;
-        left: 11px;
-        width: 8px;
-        height: 101%;
-        z-index: 1; }
-      .summary .line-map .stop .details {
+      padding: 15px 0px 0px 35px; }
+      .summary > div .description span {
         display: inline-block;
-        width: 370px;
-        padding-left: 10px;
-        font-size: 16px; }
-        .summary .line-map .stop .details .name {
+        width: 100%;
+        font-size: 16px;
+        padding-bottom: 10px;
+        color: #000000; }
+      .summary > div .description strong {
+        color: #000000; }
+    .summary > div .line-map {
+      padding-left: 35px;
+      padding-top: 10px; }
+      .summary > div .line-map .stop {
+        width: 400px;
+        height: 60px;
+        position: relative; }
+        .summary > div .line-map .stop .line {
+          position: absolute;
+          top: 0px;
+          left: 11px;
+          width: 8px;
+          height: 101%;
+          z-index: 1; }
+        .summary > div .line-map .stop .details {
           display: inline-block;
-          width: 100%; }
-        .summary .line-map .stop .details .route-number {
-          display: inline-block;
-          margin-right: 4px;
-          font-size: 14px;
-          line-height: 14px;
-          padding: 3px 5px;
-          color: #FFFFFF;
-          font-weight: bold; }
-      .summary .line-map .stop .sequence {
-        width: 30px;
-        vertical-align: top;
-        position: relative;
-        z-index: 2; }
-    .summary .line-map .stop.last .line {
-      display: none; }
+          width: 370px;
+          padding-left: 10px;
+          font-size: 16px; }
+          .summary > div .line-map .stop .details .name {
+            display: inline-block;
+            width: 100%; }
+          .summary > div .line-map .stop .details .route-number {
+            display: inline-block;
+            margin-right: 4px;
+            font-size: 14px;
+            line-height: 14px;
+            padding: 3px 5px;
+            color: #FFFFFF;
+            font-weight: bold; }
+        .summary > div .line-map .stop .sequence {
+          width: 30px;
+          vertical-align: top;
+          position: relative;
+          z-index: 2; }
+      .summary > div .line-map .stop.last .line {
+        display: none; }
 
 .map {
   height: 800px;
-  border: solid 1px #000000;
   display: inline-block;
-  vertical-align: top;
-  line-height: 800px;
-  text-align: center; }
-  .map span {
-    font-size: 32px;
-    vertical-align: middle; }
+  vertical-align: top; }
+  .map div {
+    border: solid 1px #000000; }
+    .map div span {
+      font-size: 32px;
+      vertical-align: middle; }
 
 .route {
   display: inline-block; }
