@@ -31,6 +31,9 @@ module.exports = function routes(app){
 	app.get('/', function(req, res) {
 		res.render('route3', {});
     });
+	app.get('/print', function(req, res) {
+		res.render('printable', {});
+    });
 	
 	app.get('/stops/', function(req, res){
 		var r = {

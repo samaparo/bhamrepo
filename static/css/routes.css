@@ -1,6 +1,10 @@
 * {
   box-sizing: border-box; }
 
+body {
+  padding: 0px;
+  margin: 0px; }
+
 .route-1 {
   background-color: #1779B3;
   border-color: #1779B3; }
@@ -30,8 +34,12 @@
     font-weight: bold; }
 
 .wrapper {
-  width: 1400px;
-  padding-top: 20px; }
+  width: 1400px; }
+  .wrapper .print-cell {
+    padding: 10px;
+    width: 350px; }
+  .wrapper .print-cell.two {
+    width: 700px; }
 
 .summary {
   width: 522px;
@@ -117,12 +125,10 @@
       display: none; }
 
 .map {
-  width: 674px;
   height: 800px;
   border: solid 1px #000000;
   display: inline-block;
   vertical-align: top;
-  margin-left: 50px;
   line-height: 800px;
   text-align: center; }
   .map span {
@@ -130,7 +136,6 @@
     vertical-align: middle; }
 
 .route {
-  width: 1000px;
   display: inline-block; }
   .route .header {
     border-bottom-style: solid;
