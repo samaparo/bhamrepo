@@ -1,6 +1,13 @@
-Questions:
+Data issues:
 
-Which stops to highlight?
-	. Choose stops highlighted in PDFs (Manual)?
-Can we get rid of '\t's in stoptime.stop_id
-	
+.empty lines
+.tab characters
+.several stops without arrival/departure times
+
+//commands/queries used to clean up data
+sed  '/^[^:]*$/d' stop_times.txt > stop_times2.txt
+sed  '/^[[:space:]]*$/d' shapes.txt > shapes2.txt
+
+
+update stop_times set departure_time = REPLACE(departure_time, '	','')
+update stop_times set arrival_time = REPLACE(arrival_time, '	','')
