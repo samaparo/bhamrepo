@@ -16,6 +16,7 @@
     "gtfs":"0.0.4",
 	"mongoose": "= 3.6.x",
 	"underscore":"latest",
+  "sqlite3":"latest",
 	"express3-handlebars":"latest"
   },
   "private": true,
