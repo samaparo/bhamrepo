@@ -27,10 +27,10 @@ module.exports = function routes(app){
 			_.each(rows, function(row){
 				var tripID = row.trip_id;
 				if(allTrips[tripID] == undefined){
-					allTrips[tripID] = {IS_INBOUND: row.trip_headsign === "Central Station", IS_WEEKDAY: row.service_id === "WD", STOPS: []};
+					allTrips[tripID] = {IS_INBOUND: row.trip_headsign === "Central Station" || row.trip_headsign === "Princeton", IS_WEEKDAY: row.service_id === "WD", STOPS: []};
 				}
 
-				var stop = {STOP_TIME: row.arrival_time, STOP_ID: row.stop_id};
+				var stop = {TIME: row.arrival_time, STOP_ID: row.stop_id};
 				allTrips[tripID].STOPS.push(stop);
 			});
 
