@@ -94,10 +94,19 @@
 				var rowHTML = "";
 				_.each(stopIDs, function(ID){
 					var matchingTime = _.find(trip.STOPS, function(stop){ return stop.STOP_ID == ID});
-					if(matchingTime != undefined)
-						rowHTML += timeTemplate(matchingTime);
-					else
+					if(matchingTime != undefined){
+						var timeClean = matchingTime.TIME.replace(":00", "");
+						var split = timeClean.split(":");
+						var hours = parseInt(split[0]);
+						if(hours > 12)
+							hours = hours - 12;
+						timeClean = hours + ":" + split[1];
+
+						rowHTML += timeTemplate({TIME: timeClean});
+					}
+					else {
 						rowHTML += timeTemplate({TIME:'-'});
+					}
 				});
 			
 				var ampmText = "";
