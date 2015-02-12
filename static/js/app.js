@@ -48,34 +48,36 @@
 		var outboundStopIDs = ['SBO1','SBO23','SBO32','SBO45','SBO61','SBO67','SBO74', 'SBO75'];
 		var inboundStopIDs = ['SBO75','SBI3','SBI6','SBI13','SBI28','SBI41','SBI49','SBO1'];
 
-		var letter = 0;
-		_.each(stops, function(stop){
-			stop.LETTER = String.fromCharCode(65 + letter);
-			letter += 1;
-		});
+		
 		
 		var inboundTripsWD = data.weekdayInbound;
 		var outboundTripsWD = data.weekdayOutbound;
 		var outboundTripsWE = data.weekendOutbound;
 		var inboundTripsWE = data.weekendInbound;
-		
-		//populate with 6 dummy rows
-		// for(var i = 0; i<16; i++){
-		// 	inboundTripsWD.push({STOPS:[{STOP_ID:"A", TIME:"5:45"},{STOP_ID:"B", TIME:"5:45"},{STOP_ID:"C", TIME:"5:45"},{STOP_ID:"D", TIME:"5:45"},{STOP_ID:"E", TIME:"5:45"},{STOP_ID:"G", TIME:"5:45"},{STOP_ID:"J", TIME:"5:45"},{STOP_ID:"H", TIME:"5:45"},]});
-		// }
-		// for(var i = 0; i<16; i++){
-		// 	outboundTripsWD.push({STOPS:[{STOP_ID:"A", TIME:"5:45"},{STOP_ID:"B", TIME:"5:45"},{STOP_ID:"C", TIME:"5:45"},{STOP_ID:"D", TIME:"5:45"},{STOP_ID:"E", TIME:"5:45"},{STOP_ID:"G", TIME:"5:45"},{STOP_ID:"H", TIME:"5:45"},{STOP_ID:"J", TIME:"5:45"},]});
-		// }
-		// for(var i = 0; i<10; i++){
-		// 	outboundTripsWE.push({STOPS:[{STOP_ID:"A", TIME:"5:45"},{STOP_ID:"B", TIME:"5:45"},{STOP_ID:"D", TIME:"5:45"},{STOP_ID:"G", TIME:"5:45"},{STOP_ID:"J", TIME:"5:45"}]});
-		// }
-		// for(var i = 0; i<10; i++){
-		// 	inboundTripsWE.push({STOPS:[{STOP_ID:"A", TIME:"5:45"},{STOP_ID:"B", TIME:"5:45"},{STOP_ID:"C", TIME:"5:45"},{STOP_ID:"I", TIME:"5:45"},{STOP_ID:"J", TIME:"5:45"}]});
-		// }
+
+
+		var $lineMap = $(".line-map");
+		var lineMapTemplate = _.template('<div class="stop <%= last-class %>">' +
+										 '<div class="sequence"><span class="route-1"><%= LETTER %></span></div><span class="details"><span class="name"><%= NAME %></span></span>' +
+										 '<div class="line route-1" ></div>' +
+										 '</div>');
+		var mapHTML = "";
+		var letter = 0;
+		var counter = 0;
+		_.each(stops, function(stop){
+			stop.LETTER = String.fromCharCode(65 + letter);
+			letter += 1;
+
+			stop['last-class'] = counter === stops.length ? "last" : "";
+			mapHTML += lineMapTemplate(stop);
+			counter += 1;
+		});
+		$lineMap.html(mapHTML);
 					  
 		var $outboundTable = $("#outbound");
 		var $inboundTable = $("#inbound");
-		
+
+
 		var stopTemplate = _.template('<div class="stop">' +
 						   '	<div class="sequence">' +
 						   '		<span><%= LETTER %></span>' +
