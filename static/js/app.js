@@ -57,20 +57,20 @@
 
 
 		var $lineMap = $(".line-map");
-		var lineMapTemplate = _.template('<div class="stop <%= last-class %>">' +
+		var lineMapTemplate = _.template('<div class="stop <%= lastclass %>">' +
 										 '<div class="sequence"><span class="route-1"><%= LETTER %></span></div><span class="details"><span class="name"><%= NAME %></span></span>' +
 										 '<div class="line route-1" ></div>' +
 										 '</div>');
 		var mapHTML = "";
 		var letter = 0;
-		var counter = 0;
+		var count = 0;
 		_.each(stops, function(stop){
 			stop.LETTER = String.fromCharCode(65 + letter);
 			letter += 1;
 
-			stop['last-class'] = counter === stops.length ? "last" : "";
+			stop['lastclass'] = count === stops.length - 1 ? "last" : "";
 			mapHTML += lineMapTemplate(stop);
-			counter += 1;
+			count += 1;
 		});
 		$lineMap.html(mapHTML);
 					  
@@ -115,12 +115,6 @@
 				counter += 1;
 				if(counter>= 8){
 					isPM = true;
-				}
-				if(counter == 1){
-					//ampmText = "A.M.";
-				}
-				if(counter == 8){
-					//ampmText = "P.M.";
 				}
 				timeHTML += rowTemplate({ampmClass:(isPM ? "pm" : ""), ampmText: ampmText, stopHTML: rowHTML});
 			});
