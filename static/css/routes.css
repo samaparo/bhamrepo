@@ -76,7 +76,7 @@ body {
     .summary > div .description {
       display: inline-block;
       width: 100%;
-      padding: 15px 0px 0px 35px; }
+      padding: 15px 0px 0px 18px; }
       .summary > div .description span {
         display: inline-block;
         width: 100%;
@@ -103,7 +103,8 @@ body {
           display: inline-block;
           width: 370px;
           padding-left: 10px;
-          font-size: 14px; }
+          font-size: 16px;
+          line-height: 29px; }
           .summary > div .line-map .stop .details .name {
             display: inline-block;
             width: 100%; }
