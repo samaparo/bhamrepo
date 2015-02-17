@@ -13,8 +13,8 @@ $super : 64px;
 $extraLarge: 32px;
 $large: 22px;
 $medium: 16px;
-$small: 16px;
-$ex-small: 14px;
+$small: 14px;
+$ex-small: 12px;
 
 //Route Colors
 .route-1 { 
@@ -57,7 +57,7 @@ $ex-small: 14px;
 .wrapper {
 	width: 1400px;
 	.print-cell {
-		padding: 10px;
+		padding: 7px;
 		width: 350px;
 		vertical-align: top;
 	}
@@ -139,6 +139,7 @@ $ex-small: 14px;
 				.name{
 					display:inline-block;
 					width: 100%;
+
 				}
 				.route-number{
 					display: inline-block;
@@ -192,8 +193,10 @@ $ex-small: 14px;
 			display:inline-block;
 			
 			width: 50px;
-			height: 40px;
-			padding-top: 10px;
+			height: 27px;
+			padding-top: 4px;
+			position:relative;
+			top:5px;
 			//padding-left: 5px;
 			color: #FFFFFF;
 			text-align: center;
@@ -208,18 +211,25 @@ $ex-small: 14px;
 	}
 	.stops{
 		width: 100%;
-		padding-top: 10px;
-		padding-bottom: 15px;
+		padding-top: 5px;
+		padding-bottom: 0px;
 		.stop{
 			vertical-align: top;
 			display:inline-block;
 			text-align: center;
-			color:#000000;
-			font-size: $small;
 			padding: 0px 5px;
 			.sequence{
-				padding-bottom: 5px;	
+				padding-bottom: 2px;	
 			}
+			.name {
+				color:#000000;
+				font-size: $small;
+				line-height: $small + 4;
+				height: ($small * 2.5);
+				overflow:hidden;
+				display:inline-block;
+			}
+			
 		}
 	}
 	.day-divider{
@@ -227,9 +237,8 @@ $ex-small: 14px;
 		text-align: center;
 		color: #FFFFFF;
 		font-weight: bold;
-		padding-top: 2px;
-		height: 26px;
 		font-size: $small;
+		line-height: $small + 2;
 		border: solid 1px #000000;
 		span{
 			
@@ -240,7 +249,7 @@ $ex-small: 14px;
 		.row{
 			border-bottom: solid 1px grey;
 			position:relative;
-			line-height: 22px;
+			line-height: 20px;
 			.am-pm{
 				font-size: $small;
 				position: absolute;
