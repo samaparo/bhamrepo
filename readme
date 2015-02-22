@@ -12,4 +12,4 @@ sed  '/^[[:space:]]*$/d' shapes.txt > shapes2.txt
 update stop_times set departure_time = REPLACE(departure_time, '	','')
 update stop_times set arrival_time = REPLACE(arrival_time, '	','')
 
-test
+test!
