@@ -85,7 +85,7 @@
 						   '<span class="name"><%= NAME %></span>' +
 				           '</div>');
 
-		var generateTimeHTML = function(tripCollection, stopIDs){
+		var generateTimeHTML = function(tripCollection, stopIDs, otherTripCollection){
 			var rowTemplate = _.template('<div class="row <%= ampmClass %>"><div class="am-pm"><%= ampmText %></div><%= stopHTML %></div>');
 			var timeTemplate = _.template('<div class="time"><%= TIME %></div>');
 			
@@ -118,6 +118,27 @@
 				}
 				timeHTML += rowTemplate({ampmClass:(isPM ? "pm" : ""), ampmText: ampmText, stopHTML: rowHTML});
 			});
+
+			var timeAsInt = function(timeString){
+				return parseInt(timeString.replace(/\D/g, ""));
+			};
+
+			var emptyHTML = "";
+			_.each(stopIDs, function(){ emptyHTML += timeTemplate({TIME:'-'}); });
+			var bufferRow = rowTemplate({ampmClass:"", ampmText:"", stopHTML: emptyHTML});
+
+			var earliestTime = timeAsInt(tripCollection[0].STOPS[0].TIME);
+			for(var i=0; i<otherTripCollection.length; i++){
+				var otherEarlyTime = timeAsInt(otherTripCollection[i].STOPS[0].TIME);
+				if(otherEarlyTime <= earliestTime){
+					timeHTML = bufferRow + timeHTML;
+				}
+				else{
+					break;
+				}
+			}
+
+
 			return timeHTML;
 		};
 		
@@ -129,8 +150,8 @@
 				stopHTML += stopTemplate(matchingStop);
 		});	
 		$outboundTable.find(".stops").html(stopHTML);
-		$outboundTable.find(".times").eq(0).html(generateTimeHTML(outboundTripsWD, outboundStopIDs));
-		$outboundTable.find(".times").eq(1).html(generateTimeHTML(outboundTripsWE, outboundStopIDs));
+		$outboundTable.find(".times").eq(0).html(generateTimeHTML(outboundTripsWD, outboundStopIDs, inboundTripsWD));
+		$outboundTable.find(".times").eq(1).html(generateTimeHTML(outboundTripsWE, outboundStopIDs, inboundTripsWE));
 		$outboundTable.find(".stops .stop").css("width", stopPercent);
 		$outboundTable.find(".times .time").css("width", stopPercent);
 		
@@ -143,8 +164,8 @@
 				stopHTML += stopTemplate(matchingStop);
 		});	
 		$inboundTable.find(".stops").html(stopHTML);
-		$inboundTable.find(".times").eq(0).html(generateTimeHTML(inboundTripsWD, inboundStopIDs));
-		$inboundTable.find(".times").eq(1).html(generateTimeHTML(inboundTripsWE, inboundStopIDs));
+		$inboundTable.find(".times").eq(0).html(generateTimeHTML(inboundTripsWD, inboundStopIDs, outboundTripsWD));
+		$inboundTable.find(".times").eq(1).html(generateTimeHTML(inboundTripsWE, inboundStopIDs, outboundTripsWE));
 		$inboundTable.find(".stops .stop").css("width", stopPercent);
 		$inboundTable.find(".times .time").css("width", stopPercent);
 		
